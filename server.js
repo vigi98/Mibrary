@@ -12,7 +12,7 @@ app.set('views',__dirname+'/views')//No need to put this also
 //console.log(__dirname)
 app.set('layout','layouts/layout')//or './layouts/layout' -->to set our common layout->This will directly go to 'views' folder and search
 app.use(expressLayout)//Have to use this to implement layout
-app.use(express.static('./public'))
+app.use(express.static('public'))
 
 
 //Database//should be dependent on environment
@@ -28,12 +28,6 @@ db.once('open',()=>console.log('Connected to Mongoose....'))
 //Route
 app.use('/',Route)
 
-app.listen(process.env.PORT||3000,(err)=>{
-
-    if(err){
-     console.log("Cannot start server")
-     return
-    }
-
+app.listen(process.env.PORT||3000,()=>{
     console.log('Server Started for BookList......')
 })
