@@ -4,10 +4,22 @@ const Author=require('../models/author')
 
 //All Authors
 router.get('/',async(req,res)=>{    
-    
-    const authors=await Authors.find()
-    res.render('authors/index',{authors})
-    
+
+    let searchValue={}
+    if(req.query.name!=null && req.query.name!==''){
+         searchValue.name=new RegExp(req.query.name,'i')
+         console.log(searchValue)
+
+    }
+    try{
+        const authors=await Author.find(searchValue)
+        console.log('Query ',req.query.name)
+        res.render('authors/index',{authors,searchKey:req.query.name}) 
+    }
+    catch(err){
+        res.redirect('/')
+    }
+   
 
 })
 
