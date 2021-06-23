@@ -7,10 +7,10 @@
     <title>Mibrary</title>
 </head>
 <body>
-    Header
-    <br>
+    <!-- include() to include one ejs file to another.Relative path -->
+    <% include('../partials/header') %> 
+    <%- include('../partials/errorMessage') %> 
     <%-body%> 
-    <br>
-    Footer
+   
 </body>
 </html>
